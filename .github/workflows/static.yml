@@ -32,33 +32,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      # Step 2: Install dependencies
+      # Step 2: Set up Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
       
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
       
-      # Step 3: Build TailwindCSS
+      # Step 4: Build TailwindCSS
       - name: Build TailwindCSS
         run: npm run dev
       
-      # Step 4: Setup GitHub Pages
+      # Step 5: Setup Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
       
-      # Step 5: Upload static files
+      # Step 6: Upload static content
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Include the html folder and output.css
           path: |
-            html
-            src/output.css
+            html  # Deploy the html folder containing index.html
+            src/output.css  # Include the Tailwind output file for styling
       
-      # Step 6: Deploy to GitHub Pages
+      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
